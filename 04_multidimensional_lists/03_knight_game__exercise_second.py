@@ -42,7 +42,6 @@ for row in range(n):
 
 # print(len(knights))
 top_knight = [0, 0, 0]
-top_knight_count = 0
 
 while True:
     knights_attacks = 0
@@ -58,25 +57,9 @@ while True:
         if knight[2] > top_knight[2]:
             top_knight = knight
 
-    for knight in knights:
-        if top_knight[2] == knight[2]:
-            top_knight_count += 1
+    knights.remove(top_knight)
+    removed += 1
+    board[top_knight[0]][top_knight[1]] = "0"
+    top_knight = [0, 0, 0]
 
-    if top_knight_count == 1:
-        knights.remove(top_knight)
-        top_knight_count = 0
-        removed += 1
-        board[top_knight[0]][top_knight[1]] = "0"
-        top_knight = [0, 0, 0]
-    elif top_knight_count > 1:
-        for knight in knights:
-            if knight[2] == top_knight[2]:
-                knights.remove(knight)
-                board[top_knight[0]][top_knight[1]] = "0"
-                removed += 1
-                top_knight = [0, 0, 0]
-                top_knight_count = 0
-#     [print(*line, sep=' ')for line in board]
-#     print()
-# print(len(knights))
 print(removed)
