@@ -1,26 +1,38 @@
-# with error
-# numbers_list = int(input()).split(", ")
-# result = 1
-#
-# for i in range(numbers_list):
-#     number = numbers_list[i+1]
-#     if number <= 5
-#         result *= number
-#     elif 5 < number <= 10:
-#         result /= number
-#
-# print(total)
+numbers_dictionary = {}
 
-# fixed
+line = input()
 
-numbers_list = [int(x) for x in input().split(", ")]
-result = 1
+while line != "Search":
+    number_as_string = line
+    try:
+        number = int(input())
 
-for i in range(len(numbers_list)):
-    number = numbers_list[i]
-    if number <= 5:
-        result *= number
-    elif 5 < number <= 10:
-        result /= number
+    except ValueError:
+        print("The variable number must be an integer")
+    else:
+        numbers_dictionary[number_as_string] = number
 
-print(result)
+    line = input()
+
+line = input()
+
+while line != "Remove":
+    searched = line
+    try:
+        print(numbers_dictionary[searched])
+    except KeyError:
+        print("Number does not exist in dictionary")
+
+    line = input()
+
+line = input()
+
+while line != "End":
+    searched = line
+    try:
+        del numbers_dictionary[searched]
+    except KeyError:
+        print("Number does not exist in dictionary")
+    line = input()
+
+print(numbers_dictionary)
