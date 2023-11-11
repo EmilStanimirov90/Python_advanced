@@ -1,0 +1,26 @@
+.docx
+- - - 06-File-Handling-Exercise.docx
+- - - 06-File-Handling-Lab.docx
+.py
+- - - 01_even_lines_exercises.py
+- - - 01_file_opener_lab.py
+- - - 02_file_reader_lab.py
+- - - 02_line_numbers_exercises.py
+- - - 03_file_manipulator_exercise.py
+- - - 03_file_writer_lab.py
+- - - 04_directory_traversal_exercise.py
+- - - 04_file_delete_lab.py
+- - - 05_word_count_lab.py
+- - - example.py
+.txt
+- - - input.txt
+- - - my_first_file.txt
+- - - numbers.txt
+- - - output.txt
+- - - output_v2.txt
+- - - report.txt
+- - - text.txt
+- - - text_v2.txt
+- - - text_v3.txt
+- - - users.txt
+- - - words.txt
