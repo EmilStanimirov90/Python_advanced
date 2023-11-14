@@ -28,14 +28,16 @@ def place_player_number(column_index, m, player_number):
 
 def is_winner(current_row, current_col, matrix, player):
 
-    directions = {"up": (-1, 0), "down": (1, 0), "left": (0, -1),
-                  'right': (0, 1), 'top_right': (-1, 1),
-                  "down_right": (1, 1), 'down_left': (1, -1), 'top_left': (-1, -1)}
+    directions = {"up": (-1, 0),  "left": (0, -1),
+                  'top_right': (-1, 1), "down_right": (1, 1), }
 
     for r, c in directions.items():
         row = current_row
         col = current_col
+        opposite_row = current_row
+        opposite_col = current_col
         positions_in_a_row = 1
+        opposite_direction = 0
         for _ in range(3):
             row += c[0]
             col += c[1]
@@ -46,10 +48,28 @@ def is_winner(current_row, current_col, matrix, player):
                     break
             else:
                 break
-            if positions_in_a_row == 4:
-                return True
+        for _ in range(3):
+            opposite_row -= c[0]
+            opposite_col -= c[1]
+            if opposite_row in range(ROWS) and opposite_col in range(COLS):
+                if matrix[opposite_row][opposite_col] == player:
+                    opposite_direction += 1
+                else:
+                    break
+            else:
+                break
+        if positions_in_a_row + opposite_direction >= 4:
+            return True
     else:
         return False
+
+def is_it_tie(matrix):
+    for r in range(ROWS):
+        for c in range(COLS):
+            if matrix[r][c] == 0:
+                return False
+    return True
+
 
 
 matrix = [[0 for _ in range(COLS)] for row in range(ROWS)]
@@ -66,7 +86,6 @@ while True:
         if is_winner(current_row, current_col, matrix, player):
             print(f"Player {player} is the winner!!!")
             break
-
     except ValueError:
         print(f"Player {player}, please select number between 1-{COLS}")
         continue
@@ -76,3 +95,8 @@ while True:
 
     player += 1
     player = 2 if player % 2 == 0 else 1
+
+    if is_it_tie(matrix):
+        print("Game over, it's a tie!")
+        break
+        
