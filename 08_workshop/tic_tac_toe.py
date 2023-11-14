@@ -40,8 +40,36 @@ def is_win(board_, current_sign_):
     return any([is_column_win(board_, current_sign_), is_row_wint(board_), is_diagonal_win(board_, current_sign_)])
 
 
+def is_row_win_possible(board_):
+    if all("X" in row_ and "O" in row_ for row_ in board_):
+        return False
+    return True
+
+
+def is_col_win_possible(board_):
+    columns = []
+    for col_ in range(len(board_)):
+        current_column = []
+        for row_ in range(len(board_)):
+            current_column.append(board_[row_][col_])
+        columns.append(current_column)
+    if all(["X" in col_ and "O" in col_ for col_ in columns]):
+        return False
+    return True
+
+
+def is_diagonal_win_possible(board_):
+    diagonal_1, diagonal_2 = [], []
+    for index in range(len(board_)):
+        diagonal_1.append(board_[index][index])
+        diagonal_2.append(board_[index][len(board_) - 1 - index])
+    if "X" in diagonal_1 and "O" in diagonal_1 and "X" in diagonal_2 and "O" in diagonal_2:
+        return False
+    return True
+
+
 def is_draw(board_):
-    if any([None in row for row in board_]):
+    if any([is_diagonal_win_possible(board_), is_col_win_possible(board_), is_row_win_possible(board_)]):
         return False
     return True
 
@@ -88,9 +116,11 @@ while True:
     row, col = board_mapper[int(choice)]
     board[row][col] = current_sign
     render_board(board)
+
     if is_win(board, current_sign):
         print(f"{current_player} won!")
         break
+
     if is_draw(board):
         print('Draw!')
         break
