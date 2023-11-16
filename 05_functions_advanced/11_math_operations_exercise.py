@@ -1,7 +1,7 @@
 # from collections import deque
 #
 #
-# def math_operations(*args, **kwargs):
+# def math_operations_04_lab(*args, **kwargs):
 #     args = deque(args)
 #     result = []
 #     final = []
