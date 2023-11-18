@@ -1,52 +1,42 @@
-def is_valid_move(matrix, row, col):
-    # Check if the move is within the boundaries of the matrix
-    return 0 <= row < len(matrix) and 0 <= col < len(matrix[0])
+def movie_organizer(*args):
+    movies = {}
+
+    for movie, genre in args:
+        if genre not in movies:
+            movies[genre] = []
+        movies[genre].append(movie)
+
+    for genre, movies_list in movies.items():
+        movies_list.sort()
+
+    sorted_genres = sorted(movies.items(), key=lambda x: (-len(x[1]), x[0]))
+
+    result = ""
+    for genre, movies_list in sorted_genres:
+        result += f"{genre} - {len(movies_list)}\n"
+        for movie in movies_list:
+            result += f"* {movie}\n"
+
+    return result
 
 
-def find_mouse(matrix):
-    # Find the current position of the mouse in the matrix
-    for i in range(len(matrix)):
-        for j in range(len(matrix[0])):
-            if matrix[i][j] == 'M':
-                return i, j
-    return -1, -1  # Mouse not found
-
-
-def update_matrix(matrix, new_row, new_col):
-    # Update the matrix with the new position of the mouse
-    old_row, old_col = find_mouse(matrix)
-    matrix[old_row][old_col] = '*'  # Update old position
-    matrix[new_row][new_col] = 'M'  # Update new position
-
-
-def print_matrix(matrix):
-    for row in matrix:
-        print(''.join(row))
-
-
-def mouse_in_the_kitchen():
-    n, m = map(int, input().split(','))
-    kitchen = []
-
-    # Reading the kitchen layout
-    for _ in range(n):
-        kitchen.append(list(input()))
-
-    directions = []
-
-    # Reading the directions until "danger" command
-    while True:
-        direction = input()
-        if direction == "danger":
-            break
-        directions.append(direction)
-
-    # Your logic to simulate the movement of the mouse goes here
-
-    # Print the final state of the matrix and the corresponding message
-    print("Message here")
-    print_matrix(kitchen)
-
-
-# Run the function
-mouse_in_the_kitchen()
+print(movie_organizer(
+    ("The Matrix", "Sci-fi")))
+print(movie_organizer(
+    ("The Godfather", "Drama"),
+    ("The Hangover", "Comedy"),
+    ("The Shawshank Redemption", "Drama"),
+    ("The Pursuit of Happiness", "Drama"),
+    ("The Hangover Part II", "Comedy")))
+print(movie_organizer(
+    ("Avatar: The Way of Water", "Action"),
+    ("House Of Gucci", "Drama"),
+    ("Top Gun", "Action"),
+    ("Ted", "Comedy"),
+    ("Duck Soup", "Comedy"),
+    ("The Dark Knight", "Action"),
+    ("A Star Is Born", "Musicals"),
+    ("The Warrior", "Action"),
+    ("Like A Boss", "Comedy"),
+    ("The Green Mile", "Drama"),
+    ("21 Jump Street", "Comedy")))
