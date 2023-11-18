@@ -21,7 +21,7 @@ def register(**user):
             pass_validation_mapper['upper'] = True
         elif ch in ascii_lowercase:
             pass_validation_mapper["lower"] = True
-        elif ch in digits:  
+        elif ch in digits:
             pass_validation_mapper['digit'] = True
         elif ch in punctuation:
             pass_validation_mapper['special'] = True
