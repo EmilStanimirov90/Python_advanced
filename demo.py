@@ -1,4 +1,4 @@
-a = int(input())
-b = int(input())
+a = '10' + int('2')
 
-print(a == b)
+
+print(a)
